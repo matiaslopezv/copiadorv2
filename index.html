@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- favicon -->
+    <link rel="shortcut icon" href="../images/favicon_krabby.ico" type="image/x-icon">
+    <!-- GOOGLE FONTS  -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,700;1,100;1,300;1,500&display=swap" rel="stylesheet">
+    <!-- BOOTSTRAP -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <!-- MI CSS -->
+    <link rel="stylesheet" href="css/styles.css">
+    <title>COPIADOR</title>
+</head>
+<body class="container-fluid">
+    <nav class="navbar navbar-light bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Scripts</a>
+            <div class="mb-3 ">
+                <label for="formFileSm" class="form-label"></label>
+                <input class="form-control form-control-sm" id="formFileSm" type="file">
+            </div>
+            <form action="">
+                <div id="searchBarContainer" class="mt-3">
+                    <input type="text" id="searchBar" class="form-control" placeholder="Busca tu Script">
+                    <label for="reset">
+                        <button type="reset" id="reset" class="btn btn-primary">Limpiar</button>
+                    </label>
+                </div>
+            </form>
+        </div>
+    </nav>
+    
+    <div id="buttonContainer" class="mt-3 columnas"></div>
+    <div id="alertMessage" style="display: none;"></div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.4/xlsx.full.min.js"></script>
+    <script>
+        const formFileSm = document.getElementById('formFileSm');
+        const buttonContainer = document.getElementById('buttonContainer');
+        const alertMessage = document.getElementById('alertMessage');
+        let classCounter = 1;
+        let jsonData = [];
+        let originalData = []; // Guarda el contenido original
+
+        formFileSm.addEventListener('change', (e) => {
+            const file = e.target.files[0];
+            const reader = new FileReader();
+
+            reader.onload = (event) => {
+                const data = event.target.result;
+                const workbook = XLSX.read(data, { type: 'binary' });
+                const sheetName = workbook.SheetNames[0];
+                const sheet = workbook.Sheets[sheetName];
+                jsonData = XLSX.utils.sheet_to_json(sheet, { header: 1 });
+                originalData = jsonData.slice(); // Guarda una copia del contenido original
+                renderButtons();
+            };
+
+            reader.readAsBinaryString(file);
+        });
+
+        document.getElementById('reset').addEventListener('click', () => {
+            document.getElementById('searchBar').value = ''; // Limpia el campo de búsqueda
+            jsonData = originalData.slice(); // Restaura el contenido original
+            renderButtons();
+        });
+
+        function renderButtons() {
+            buttonContainer.innerHTML = '';
+            let rowContainer = null;
+
+            jsonData.forEach((row) => {
+                row.forEach((cellData) => {
+                    if (classCounter === 1) {
+                        rowContainer = document.createElement('div');
+                        rowContainer.classList.add('a-padre');
+                        rowContainer.classList.add('container');
+                        buttonContainer.appendChild(rowContainer);
+                    }
+
+                    const buttonCell = document.createElement('div');
+                    buttonCell.className = 'button-cell';
+                    buttonCell.innerHTML = `<span class="cell-data">${cellData || ''}</span>`;
+                    buttonCell.classList.add(`a${classCounter}`);
+                    buttonCell.classList.add('container');
+                    buttonCell.addEventListener('click', () => {
+                        const text = cellData || '';
+                        const textArea = document.createElement('textarea');
+                        textArea.value = text;
+                        document.body.appendChild(textArea);
+                        textArea.select();
+                        document.execCommand('copy');
+                        document.body.removeChild(textArea);
+                        showAlert('Texto copiado al portapapeles');
+                    });
+
+                    rowContainer.appendChild(buttonCell);
+                    classCounter = 3 - classCounter;
+                });
+            });
+        }
+
+        const searchBar = document.getElementById('searchBar');
+        searchBar.addEventListener('input', () => {
+            const searchValue = searchBar.value.toLowerCase();
+            const containers = document.querySelectorAll('.a-padre');
+
+            containers.forEach((container) => {
+                const hasMatch = Array.from(container.querySelectorAll('.a1')).some((element) => {
+                    return element.textContent.toLowerCase().includes(searchValue);
+                });
+
+                if (hasMatch) {
+                    container.style.display = 'block';
+                } else {
+                    container.style.display = 'none';
+                }
+            });
+        });
+
+        function showAlert(message) {
+            alertMessage.textContent = message;
+            alertMessage.style.display = 'block';
+
+            setTimeout(() => {
+                alertMessage.style.display = 'none';
+            }, 400);
+        }
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+</body>
+</html>
+<!-- BUENO -->
