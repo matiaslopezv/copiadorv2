@@ -1,0 +1,149 @@
+@import "variables";
+@import "mixins";
+
+
+body{
+    font-family: 'Roboto', sans-serif;
+    font-size: 8px;
+    background-image: linear-gradient(225deg, rgba(25, 136, 247, 1) 0%, rgba(24, 247, 243, 1) 56%);    
+    // background-image: linear-gradient(225deg, rgba(25, 136, 247, 1) 0%, rgba(17, 53, 162, 1) 83%);
+}
+
+// HEADER
+@media (min-width:1024px){
+    .buscador{
+        display: flex;
+        flex-direction: row;
+        display: flex;
+        flex-direction: row;
+    }
+}
+nav{
+    border-radius: 0px 0px 30px 30px;
+    background-color: #ff6600;
+}
+.titulo{
+    font-size: 1.9rem;
+    font-weight: 500;
+    color: rgba(17, 53, 162, 1);
+}
+.cargador{
+    display: flex;
+    justify-content: center;
+}
+
+
+// FIN HEADER
+
+// DIV QUE DIVIDE EN DOS COLUMNAS LA PAGINA
+.columnas {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* Divide en 2 columnas de igual ancho */
+    margin: 0 auto;
+    justify-content: center;
+    width: 100%;/*probando para ajustar en pantallas mas pequeñas*/
+}
+    
+
+/* a-padre corresponde al div que contiene a .a1 y .a2 */
+.a-padre{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 15px;
+        // div.button-cell que contiene dentro
+        .a1{
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            width: 290px; 
+            height: 90px;
+            span{
+                font-size:1.4rem;
+                font-weight: 900;
+                text-transform: uppercase;
+            }
+        }
+        .a2{
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            width: 470px;
+            height: 150px;
+            overflow: hidden;
+            font-size: 1.2rem;
+        }
+}
+@media(max-width:1400px){
+    .a-padre{
+        .a1{
+            width: 250px;
+            height: 65px;
+        }
+        .a2{
+            width: 400px;
+            height: 150px;
+        }
+    }
+}
+// Estilos para los botones
+.button-cell {
+    appearance: none;
+    background-color: #FFFFFF;
+    border-radius: 40em;
+    border-style: none;
+    box-shadow: #ADCFFF 0 -12px 6px inset;
+    box-sizing: border-box;
+    color: #000000;
+    cursor: pointer;
+    display: inline-block;  
+    margin: 0;
+    outline: none;
+    padding: 1rem 1.3rem;
+    quotes: auto;
+    text-align: center;
+    text-decoration: none;
+    transition: all .15s;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+}
+
+.button-cell:hover {
+    background-color: #FFC229;
+    box-shadow: #FF6314 0 -6px 8px inset;
+    transform: scale(1.125);
+    overflow: visible;
+}
+
+.button-cell:active {
+    transform: scale(1.025);
+}
+
+@media (min-width: 768px) {
+    .button-cell {
+        font-size: 1.5rem;
+        padding: .75rem 2rem;
+    }
+}
+// Estilos para los botones
+
+/* MENSAJE DE COPIADO AL PORTAPAPELES*/
+#alertMessage {
+    display: none; 
+    background-color: #f5e400;
+    color: rgb(0, 0, 0); 
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: bold;
+    padding: 10px;
+    position: fixed;
+    top: 45px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 4px;
+    z-index: 1;
+} 

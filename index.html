@@ -2,37 +2,36 @@
 <html>
 <head>
     <!-- favicon -->
-    <link rel="shortcut icon" href="../images/favicon_krabby.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="images/favicon_krabby.ico" type="image/x-icon">
     <!-- GOOGLE FONTS  -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,700;1,100;1,300;1,500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,700;0,900;1,100;1,300;1,500&display=swap" rel="stylesheet">
     <!-- BOOTSTRAP -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
     <!-- MI CSS -->
     <link rel="stylesheet" href="css/styles.css">
-    <title>COPIADOR</title>
+    <title>~COPIADOR~</title>
 </head>
-<body class="container-fluid">
-    <nav class="navbar navbar-light bg-light">
+<body class="container-fluid container-xl contenedor">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light ">
         <div class="container-fluid">
-            <a class="navbar-brand" href="#">Scripts</a>
-            <div class="mb-3 ">
+            <img src="images/blue.png" alt="Blue Express LOGO">
+            <a class="navbar-brand titulo" href="index.html">Scripts Contact Center</a>
+            <form class="header">
+                <div id="searchBarContainer" class=" buscador">
+                    <button type="reset" id="reset" class="btn btn-primary">Limpiar</button>
+                    <input type="text" id="searchBar" class="form-control" placeholder="Busca tu Script">
+                </div>
+            </form>
+            <div class="cargador">
                 <label for="formFileSm" class="form-label"></label>
                 <input class="form-control form-control-sm" id="formFileSm" type="file">
             </div>
-            <form action="">
-                <div id="searchBarContainer" class="mt-3">
-                    <input type="text" id="searchBar" class="form-control" placeholder="Busca tu Script">
-                    <label for="reset">
-                        <button type="reset" id="reset" class="btn btn-primary">Limpiar</button>
-                    </label>
-                </div>
-            </form>
         </div>
     </nav>
-    
-    <div id="buttonContainer" class="mt-3 columnas"></div>
+    <!-- DIV DINAMICO QUE RECIBE LA INFORMACION DEL .XLSX Y SE DIVIDE EN DOS COLUMNAS -->
+    <div id="buttonContainer" class="mt-3 columnas container container-fluid"></div> 
     <div id="alertMessage" style="display: none;"></div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.4/xlsx.full.min.js"></script>
     <script>
@@ -76,6 +75,7 @@
                         rowContainer = document.createElement('div');
                         rowContainer.classList.add('a-padre');
                         rowContainer.classList.add('container');
+                        rowContainer.classList.add('mt-3');
                         buttonContainer.appendChild(rowContainer);
                     }
 
@@ -125,7 +125,7 @@
 
             setTimeout(() => {
                 alertMessage.style.display = 'none';
-            }, 400);
+            }, 500);
         }
     </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
