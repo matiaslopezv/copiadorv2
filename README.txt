@@ -1,9 +1,3 @@
-Esta aplicacion web tiene por finalidad poder facilitar el trabajo con los scripts que utilizan
-los agentes del Contact Center de Blue Express. Cargando estos mensajes que se encuentran en un 
-archivo Excel o .xlsx y mostrandolos de una forma amigable y ordenada pudiendo buscar rapidamente
-y con la facilidad de poder copiar con un solo click todo el texto!.
-
-
 ***INSTRUCCIONES***
 1-Debes cargar tus scripts en un archivo .xlsx donde el contenido este distribuido en 2 columnas
     (recordar: las columnas son verticales) A1 y B1, donde A1 correspondera al titulo de tu script
@@ -22,11 +16,3 @@ y con la facilidad de poder copiar con un solo click todo el texto!.
 
 
 ~COPIADOR~ ha sido desarrollado por Matias Lopez Valenzuela
-
-Espero que se puedan beneficiar de este pequeña aplicacion web y sacarle todo su potencial
-por el momento se ha intentado dar la mayor responsividad posible para que se visualice de 
-forma correcta en los tamaños de pantalla de las laptop que utilizamos.
-
-Cualquier duda, comentario y/o aporte son bienvenidos para seguir mejorando este proyecto
-y tambien para añadir nuevas funcionalidades y contenido util para la operacion de 
-atencion al cliente.
