@@ -147,3 +147,17 @@ nav{
     border-radius: 4px;
     z-index: 1;
 } 
+
+// ESTILOS INSTRUCCIONES.html
+h1, h2{
+    text-decoration: underline;
+    font-weight: bold;
+}
+.instrucciones{
+    width:250px;
+    border-radius: 12px 12px 12px 12px;
+}
+
+.instrucciones__lista{
+    list-style-type:upper-roman;
+}
